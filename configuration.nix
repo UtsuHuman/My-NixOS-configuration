@@ -53,8 +53,11 @@
  };
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+services.displayManager.sddm.enable = true;
+services.desktopManager.plasma6.enable = true;
+
+
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -88,36 +91,20 @@
   users.users.timur = {
     isNormalUser = true;
     description = "timur";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "vide" "plugdev" ];
     packages = with pkgs; [
-      kdePackages.kate
+      usbutils
     #  thunderbird
     ];
   };
-  # Install firefox;
-services.zapret.enable = true;
-   services.zapret.whitelist =
-   [
-   ''
-  youtube.com
-  googlevideo.com
-  ytimg.com
-  youtu.be
-  discord.com
-  discord-attachmets-uploads-prd.storage.googleapis.com
-  googleapis.com
-   ''
-];
-services.zapret.params =
-[
-"--dpi-desync=fake,fakeddisorder"
-"--dpi-desync-fooling=datanoack"
-"--dpi-desync-split-pos=midsld"
-];
+
+services.udev.packages = [ pkgs.qmk-udev-rules ];
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.fish.enable = true;
   programs.amnezia-vpn.enable = true;
   programs.firefox.enable = true;
 programs.appimage.enable = true;
+hardware.opengl.driSupport32Bit = true;
 programs.steam = {
   enable = true;
   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -125,14 +112,12 @@ programs.steam = {
 };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
    telegram-desktop
    fastfetch
    steam
-   vim
    krita
    vscode
    libreoffice
@@ -142,9 +127,17 @@ programs.steam = {
    kitty
    protonplus
    git
+   google-chrome
    btop
    kdePackages.kdenlive
    handbrake
+   usbutils
+   anydesk
+   gnome-tweaks
+   qbittorrent
+   pkgs.umu-launcher
+   pkgs.protontricks
+   anytype
 ];
 
 
