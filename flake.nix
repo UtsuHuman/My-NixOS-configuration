@@ -1,6 +1,5 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     freesm.url = "github:FreesmTeam/FreesmLauncher/develop";
   };
 

@@ -130,7 +130,6 @@ programs.steam = {
    google-chrome
    btop
    kdePackages.kdenlive
-   handbrake
    usbutils
    anydesk
    gnome-tweaks
@@ -138,6 +137,7 @@ programs.steam = {
    pkgs.umu-launcher
    pkgs.protontricks
    anytype
+   vim
 ];
 
 
